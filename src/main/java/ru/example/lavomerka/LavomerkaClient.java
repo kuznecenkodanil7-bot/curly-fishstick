@@ -18,13 +18,12 @@ public final class LavomerkaClient implements ClientModInitializer {
     public void onInitializeClient() {
         LavomerkaConfig.load();
 
-        openMenuKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.lavomerka.open_menu",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_RIGHT_SHIFT,
-                "key.categories.lavomerka"
-        ));
-
+      openMenuKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        "key.lavomerka.open_menu",
+        InputUtil.Type.KEYSYM,
+        GLFW.GLFW_KEY_RIGHT_SHIFT,
+        KeyBinding.Category.MISC
+));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openMenuKey.wasPressed()) {
                 MinecraftClient.getInstance().setScreen(new LavomerkaScreen(client.currentScreen));
